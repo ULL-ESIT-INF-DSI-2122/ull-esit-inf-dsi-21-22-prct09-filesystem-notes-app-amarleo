@@ -28,9 +28,6 @@ describe('Note Class tests', () => {
     it('color setter', () => {
       firstNote.color = 'Red';
       expect(firstNote.color).to.be.eql('Red');
-      it('Notes must be red, green, blue or yellow', () => {
-        // expect(firstNote.color = 'Orange').to.throw('Color does not exist');
-      });
     });
   });
   describe('Note Class methods', () => {
