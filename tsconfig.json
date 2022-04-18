@@ -5,7 +5,8 @@
       "./dist"
     ],
     "files": [
-    "src/note.ts"
+    "src/note.ts",
+    "src/user.ts"
     ],
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
