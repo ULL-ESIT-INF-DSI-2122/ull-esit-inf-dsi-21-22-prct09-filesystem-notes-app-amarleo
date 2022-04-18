@@ -19,5 +19,8 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "require-jsdoc": "off",
+        "valid-jsdoc": "off",
+        "prefer-const": "off"
     }
 }

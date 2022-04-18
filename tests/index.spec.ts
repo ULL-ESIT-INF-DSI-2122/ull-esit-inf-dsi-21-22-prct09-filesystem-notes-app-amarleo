@@ -1,11 +1,11 @@
 import 'mocha';
 import {expect} from 'chai';
-import {index} from '../src/index';ç
+import {index} from '../src/index';
 
-describe('', () => {
+describe('test', () => {
   describe('', () => {
     it('', () => {
-
+      expect(index()).to.be.true;
     });
   });
 });
