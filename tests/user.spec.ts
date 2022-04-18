@@ -20,7 +20,7 @@ describe('User Class tests', () => {
   describe('User Class setters', () => {
     it('title setter', () => {
       firstUser.name = 'firstUser';
-      expect(firstUser.title).to.be.eql('firstUser');
+      expect(firstUser.name).to.be.eql('firstUser');
     });
     it('Notes setter', () => {
       firstUser.notes = [greenNote, blueNote];
