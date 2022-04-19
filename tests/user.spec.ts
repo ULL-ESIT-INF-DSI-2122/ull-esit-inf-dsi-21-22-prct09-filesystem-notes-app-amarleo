@@ -28,5 +28,14 @@ describe('User Class tests', () => {
     });
   });
   describe('User Class methods', () => {
+    describe('add Note method', () => {
+      firstUser.addNote(redNote);
+      // expect(firstUser.notes).to.be.eql([greenNote, blueNote, redNote]);
+      it('If it does not exists, it must create a new directory', () => {
+        // https://www.chaijs.com/plugins/chai-fs/
+        // expect('./database').to.have.dirname(firstUser.name);
+
+      });
+    });
   });
 });

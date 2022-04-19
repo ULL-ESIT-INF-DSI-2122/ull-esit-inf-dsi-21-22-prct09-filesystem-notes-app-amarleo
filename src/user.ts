@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 import {Note} from './note';
 
 export class User {
@@ -27,4 +28,20 @@ export class User {
   set notes(value: Note[]) {
     this._notes = value;
   }
+
+  addNote(note: Note) {
+    const databasePath: string = './database/' + this._name;
+    const jsonPath: string = databasePath + '/' + note.title; + '.json';
+
+    if (!fs.existsSync(databasePath)) {
+      console.log();
+      fs.mkdirSync(databasePath);
+    }
+  }
 }
+
+const firstNote: Note = new Note('Blue Note', 'This is a blue note', 'Blue');
+const redNote: Note = new Note('Red Note', 'This is a red note', 'Red');
+const user: User = new User('Ale', [firstNote]);
+
+user.addNote(redNote);
