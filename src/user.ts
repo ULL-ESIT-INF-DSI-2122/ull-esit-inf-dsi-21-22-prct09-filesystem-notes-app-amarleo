@@ -16,19 +16,19 @@ export class User {
       const jsonPath: string = databasePath + '/' + element.title + '.json';
       if (!fs.existsSync('./database')) {
         fs.mkdirSync('./database');
-        console.log('\nSe ha creado el directorio database');
+        console.log('\nDatabase directory created');
       }
       if (!fs.existsSync(databasePath)) {
         fs.mkdirSync(databasePath);
-        console.log(`\nSe ha creado el directorio al usuario ${this._name}`);
+        console.log(`\nDirectory created for user ${this._name}`);
       }
       if (fs.existsSync(jsonPath)) {
-        console.log(`\nError: La nota ${element.title} ya existe` +
-          ` para el usuario ${this._name}`);
+        console.log(`\nError: ${element.title} already exists` +
+        ` for user ${this._name}`);
       } else {
         fs.openSync(jsonPath, 'w');
-        console.log(`\nSe ha añadido al usuario` +
-          ` ${this._name} la nota ${element.title}`);
+        console.log(`\n${element.title} note has been added` +
+        ` to user ${this._name}`);
       }
     });
   }
@@ -54,20 +54,41 @@ export class User {
     const jsonPath: string = databasePath + '/' + note.title + '.json';
     if (!fs.existsSync('./database')) {
       fs.mkdirSync('./database');
-      console.log('\nSe ha creado el directorio database');
+      console.log('\nDatabase directory created');
     }
     if (!fs.existsSync(databasePath)) {
       fs.mkdirSync(databasePath);
-      console.log(`\nSe ha creado el directorio al usuario ${this._name}`);
+      console.log(`\nDirectory created for user ${this._name}`);
     }
     if (fs.existsSync(jsonPath)) {
-      console.log(`\nError: La nota ${note.title} ya existe` +
-        ` para el usuario ${this._name}`);
+      console.log(`\nError: ${note.title} already exists` +
+        ` for user ${this._name}`);
     } else {
       fs.openSync(jsonPath, 'w');
-      console.log(`\nSe ha añadido al usuario` +
-        ` ${this._name} la nota ${note.title}`);
+      console.log(`\n${note.title} note has been added` +
+        ` to user ${this._name}`);
     }
+  }
+
+  removeNote(note: Note) {
+    const jsonPath: string = './database/' + this._name +
+     '/' + note.title + '.json';
+    if (fs.existsSync(jsonPath)) {
+      fs.unlink(jsonPath, (err) => {
+        if (err) throw err;
+        console.log(`\n${jsonPath} was deleted`);
+      });
+    } else {
+      console.log(`Error: ${note.title} ` +
+        `does not exists on ${this._name} database`);
+    }
+  }
+
+  listAllNotes() {
+    console.log(`\n${this._name} notes`);
+    this._notes.forEach((note: Note) => {
+      console.log(`\n-> ${note.title}`);
+    });
   }
 }
 
@@ -75,3 +96,5 @@ const firstNote: Note = new Note('Blue Note', 'This is a blue note', 'Blue');
 const redNote: Note = new Note('Red Note', 'This is a red note', 'Red');
 const user: User = new User('Ale', [firstNote]);
 const fifa: User = new User('Fifa', [redNote]);
+
+user.listAllNotes();
