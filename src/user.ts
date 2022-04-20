@@ -22,7 +22,10 @@ export class User {
         fs.mkdirSync(databasePath);
         console.log(`\nSe ha creado el directorio al usuario ${this._name}`);
       }
-      if (!fs.existsSync(jsonPath)) {
+      if (fs.existsSync(jsonPath)) {
+        console.log(`\nError: La nota ${element.title} ya existe` +
+          ` para el usuario ${this._name}`);
+      } else {
         fs.openSync(jsonPath, 'w');
         console.log(`\nSe ha añadido al usuario` +
           ` ${this._name} la nota ${element.title}`);
@@ -72,4 +75,3 @@ const firstNote: Note = new Note('Blue Note', 'This is a blue note', 'Blue');
 const redNote: Note = new Note('Red Note', 'This is a red note', 'Red');
 const user: User = new User('Ale', [firstNote]);
 const fifa: User = new User('Fifa', [redNote]);
-user.addNote(redNote);
