@@ -26,7 +26,13 @@ export class User {
         console.log(`\nError: ${element.title} already exists` +
         ` for user ${this._name}`);
       } else {
-        fs.openSync(jsonPath, 'w');
+        const noteContent: string =
+        `{\n\t"title": "${element.title}",` +
+        `\n\t"body": "${element.body}",` +
+        `\n\t"color": "${element.color}"` +
+        `\n}`;
+
+        fs.writeFileSync(jsonPath, noteContent);
         console.log(`\n${element.title} note has been added` +
         ` to user ${this._name}`);
       }
@@ -64,9 +70,27 @@ export class User {
       console.log(`\nError: ${note.title} already exists` +
         ` for user ${this._name}`);
     } else {
-      fs.openSync(jsonPath, 'w');
+      // fs.openSync(jsonPath, 'w');
+      const noteContent: string =
+      `{\n\t"title": "${note.title}",` +
+      `\n\t"body": "${note.body}",` +
+      `\n\t"color": "${note.color}"` +
+      `\n}`;
+      fs.writeFileSync(jsonPath, noteContent);
+      this._notes.push(note);
       console.log(`\n${note.title} note has been added` +
         ` to user ${this._name}`);
+    }
+  }
+
+  editNote(note: Note) {
+    const jsonPath: string = './database/' + this._name +
+    '/' + note.title + '.json';
+    if (fs.existsSync(jsonPath)) {
+      console.log(note.body);
+    } else {
+      console.log(`Error: ${note.title} ` +
+        `does not exists on ${this._name} database`);
     }
   }
 
@@ -85,10 +109,25 @@ export class User {
   }
 
   listAllNotes() {
-    console.log(`\n${this._name} notes`);
-    this._notes.forEach((note: Note) => {
-      console.log(`\n-> ${note.title}`);
+    console.log(`\n --- ${this._name} notes ---\n`);
+    const databasePath: string = './database/' + this._name;
+    fs.readdirSync(databasePath).forEach((file: string) => {
+      console.log(file.replace('.json', ''));
     });
+  }
+
+  readNote(note: Note) {
+    const jsonPath: string = './database/' + this._name +
+    '/' + note.title + '.json';
+    if (fs.existsSync(jsonPath)) {
+      let data: string = fs.readFileSync(jsonPath,
+          {encoding: 'utf8', flag: 'r'});
+      let dataObject = JSON.parse(data);
+      console.log(dataObject.body);
+    } else {
+      console.log(`Error: ${note.title} ` +
+        `does not exists on ${this._name} database`);
+    }
   }
 }
 
@@ -97,4 +136,6 @@ const redNote: Note = new Note('Red Note', 'This is a red note', 'Red');
 const user: User = new User('Ale', [firstNote]);
 const fifa: User = new User('Fifa', [redNote]);
 
+
 user.listAllNotes();
+user.addNote(redNote);
