@@ -90,7 +90,10 @@ export class User {
   editNote(note: Note) {
     const jsonPath: string = './database/' + this._name +
     '/' + note.title + '.json';
-    if (fs.existsSync(jsonPath)) {
+    if (!fs.existsSync('./database/' + this._name)) {
+      console.log(chalk.red.inverse(`Error:` +
+        `user ${this._name} does not exists on database`));
+    } else if (fs.existsSync(jsonPath)) {
       const noteContent: string =
       `{\n\t"title": "${note.title}",` +
       `\n\t"body": "${note.body}",` +
