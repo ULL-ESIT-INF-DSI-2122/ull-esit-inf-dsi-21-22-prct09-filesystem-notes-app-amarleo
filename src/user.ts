@@ -31,7 +31,7 @@ export class User {
         `\n\t"body": "${element.body}",` +
         `\n\t"color": "${element.color}"` +
         `\n}`;
-
+        this._notes.push(element);
         fs.writeFileSync(jsonPath, noteContent);
         console.log(`\n${element.title} note has been added` +
         ` to user ${this._name}`);
@@ -70,7 +70,6 @@ export class User {
       console.log(`\nError: ${note.title} already exists` +
         ` for user ${this._name}`);
     } else {
-      // fs.openSync(jsonPath, 'w');
       const noteContent: string =
       `{\n\t"title": "${note.title}",` +
       `\n\t"body": "${note.body}",` +
@@ -130,12 +129,3 @@ export class User {
     }
   }
 }
-
-const firstNote: Note = new Note('Blue Note', 'This is a blue note', 'Blue');
-const redNote: Note = new Note('Red Note', 'This is a red note', 'Red');
-const user: User = new User('Ale', [firstNote]);
-const fifa: User = new User('Fifa', [redNote]);
-
-
-user.listAllNotes();
-user.addNote(redNote);
