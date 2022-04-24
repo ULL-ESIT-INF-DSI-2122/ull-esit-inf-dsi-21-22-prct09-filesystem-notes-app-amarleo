@@ -1,5 +1,5 @@
-const color: string[] = ['Red', 'Blue', 'Green', 'Yellow'];
-export type noteColor = 'Red' | 'Blue' | 'Green' | 'Yellow';
+const color: string[] = ['Red', 'Blue', 'Green', 'Yellow', ''];
+export type noteColor = 'Red' | 'Blue' | 'Green' | 'Yellow' | '';
 
 export const isNoteColor = (x: any): x is noteColor => color.includes(x);
 export class Note {
@@ -9,8 +9,8 @@ export class Note {
 
   constructor(
       title: string,
-      body: string,
-      color: noteColor,
+      body: string = '',
+      color: noteColor = '',
   ) {
     this._title = title;
     this._body = body;
