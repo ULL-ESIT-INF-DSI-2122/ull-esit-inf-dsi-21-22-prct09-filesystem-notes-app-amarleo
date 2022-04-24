@@ -2,10 +2,18 @@ import chalk from 'chalk';
 import * as fs from 'fs';
 import {Note} from './note';
 
+/**
+ * User Class
+ */
 export class User {
   private _name: string;
   private _notes: Note[];
 
+  /**
+   * User Class constructor
+   * @param name string with user name
+   * @param notes array of notes
+   */
   constructor(
       name: string,
       notes: Note[] = [],
@@ -43,22 +51,42 @@ export class User {
     });
   }
 
+  /**
+   * name getter
+   */
   get name(): string {
     return this._name;
   }
 
+  /**
+   * name setter
+   * @param value: string to set
+   */
   set name(value: string) {
     this._name = value;
   }
 
+  /**
+   * notes getter
+   * @returns Note Array
+   */
   get notes(): Note[] {
     return this._notes;
   }
 
+  /**
+   * Notes setter
+   * @param value: Array of notes
+   */
   set notes(value: Note[]) {
     this._notes = value;
   }
 
+  /**
+   * add Note method
+   * @param note Note object
+   * It adds a new note into the database
+   */
   addNote(note: Note) {
     const databasePath: string = './database/' + this._name;
     const jsonPath: string = databasePath + '/' + note.title + '.json';
@@ -87,6 +115,12 @@ export class User {
     }
   }
 
+
+  /**
+   * edit Note method
+   * @param note Note object
+   * It edits a note from the database
+   */
   editNote(note: Note) {
     const jsonPath: string = './database/' + this._name +
     '/' + note.title + '.json';
@@ -109,6 +143,11 @@ export class User {
     }
   }
 
+  /**
+   * remove Note method
+   * @param note Note object
+   * It removes a note from the database
+   */
   removeNote(note: Note) {
     const jsonPath: string = './database/' + this._name +
      '/' + note.title + '.json';
@@ -123,6 +162,11 @@ export class User {
     }
   }
 
+  /**
+   * list all Note method
+   * @param note Note object
+   * It list all user notes from the database
+   */
   listAllNotes() {
     console.log(`\n --- ${this._name} notes ---\n`);
     const databasePath: string = './database/' + this._name;
@@ -151,6 +195,11 @@ export class User {
     });
   }
 
+  /**
+   * read Note method
+   * @param note Note object
+   * It reads a note from the database
+   */
   readNote(note: Note) {
     const jsonPath: string = './database/' + this._name +
     '/' + note.title + '.json';
