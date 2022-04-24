@@ -84,5 +84,30 @@ yargs.command({
   },
 });
 
+yargs.command({
+  command: 'remove',
+  describe: 'Remove note from user',
+  builder: {
+    user: {
+      describe: 'User Name',
+      demandOption: true,
+      type: 'string',
+    },
+    title: {
+      describe: 'Note title',
+      demandOption: true,
+      type: 'string',
+    },
+  },
+  handler(argv) {
+    if (typeof argv.user === 'string' &&
+    typeof argv.title === 'string') {
+      const note = new Note(argv.title);
+      const user = new User(argv.user);
+      user.removeNote(note);
+    }
+  },
+});
+
 
 yargs.parse();
