@@ -6,7 +6,8 @@
     ],
     "files": [
     "src/note.ts",
-    "src/user.ts"
+    "src/user.ts",
+    "src/index.ts"
     ],
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */

@@ -8,8 +8,7 @@
     "test": "mocha",
     "coverage": "nyc npm test && nyc report --reporter=lcov",
     "start": "tsc-watch --onSuccess \"node dist/index.js\"",
-    "user": "tsc-watch --onSuccess \"node dist/user.js\"",
-    "index": "tsc-watch --onSuccess \"node dist/index.js\""
+    "user": "tsc-watch --onSuccess \"node dist/user.js\""
   },
   "repository": {
     "type": "git",
@@ -25,6 +24,7 @@
   "devDependencies": {
     "@types/chai": "^4.3.1",
     "@types/mocha": "^9.1.0",
+    "@types/yargs": "^17.0.10",
     "@typescript-eslint/eslint-plugin": "^5.19.0",
     "@typescript-eslint/parser": "^5.19.0",
     "chai": "^4.3.6",

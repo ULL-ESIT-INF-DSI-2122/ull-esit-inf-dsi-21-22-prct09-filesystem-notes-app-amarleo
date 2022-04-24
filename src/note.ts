@@ -1,5 +1,7 @@
-type noteColor = 'Red' | 'Blue' | 'Green' | 'Yellow';
+const color: string[] = ['Red', 'Blue', 'Green', 'Yellow'];
+export type noteColor = 'Red' | 'Blue' | 'Green' | 'Yellow';
 
+export const isNoteColor = (x: any): x is noteColor => color.includes(x);
 export class Note {
   private _title: string;
   private _body: string;
