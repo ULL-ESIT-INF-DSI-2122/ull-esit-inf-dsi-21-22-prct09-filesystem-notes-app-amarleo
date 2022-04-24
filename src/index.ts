@@ -57,7 +57,6 @@ yargs.command({
   },
 });
 
-
 yargs.command({
   command: 'read',
   describe: 'Read an user note',

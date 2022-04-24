@@ -142,6 +142,9 @@ export class User {
       if (dataObject.color === 'Green') {
         console.log(chalk.green(file.replace('.json', '')));
       }
+      if (dataObject.color === '') {
+        console.log(file.replace('.json', ''));
+      }
     });
   }
 
