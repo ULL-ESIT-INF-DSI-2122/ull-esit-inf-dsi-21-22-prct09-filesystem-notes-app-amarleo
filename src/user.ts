@@ -86,7 +86,15 @@ export class User {
     const jsonPath: string = './database/' + this._name +
     '/' + note.title + '.json';
     if (fs.existsSync(jsonPath)) {
-      console.log(note.body);
+      const noteContent: string =
+      `{\n\t"title": "${note.title}",` +
+      `\n\t"body": "${note.body}",` +
+      `\n\t"color": "${note.color}"` +
+      `\n}`;
+      fs.writeFileSync(jsonPath, noteContent);
+      this._notes.push(note);
+      console.log(`\n${note.title} note has been updated` +
+        ` to user ${this._name}`);
     } else {
       console.log(`Error: ${note.title} ` +
         `does not exists on ${this._name} database`);

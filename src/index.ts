@@ -109,5 +109,41 @@ yargs.command({
   },
 });
 
+yargs.command({
+  command: 'edit',
+  describe: 'Edit a note',
+  builder: {
+    title: {
+      describe: 'Note title',
+      demandOption: true,
+      type: 'string',
+    },
+    body: {
+      describe: 'Note body',
+      demandOption: true,
+      type: 'string',
+    },
+    color: {
+      describe: 'Note color',
+      demandOption: true,
+      type: 'string',
+    },
+    user: {
+      describe: 'User owner',
+      demandOption: true,
+      type: 'string',
+    },
+  },
+  handler(argv) {
+    if (typeof argv.title === 'string' &&
+      typeof argv.body === 'string' &&
+      isNoteColor(argv.color) &&
+      typeof argv.user === 'string') {
+      const newNote = new Note(argv.title, argv.body, argv.color);
+      const user = new User(argv.user);
+      user.editNote(newNote);
+    }
+  },
+});
 
 yargs.parse();
