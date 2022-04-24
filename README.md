@@ -1,5 +1,11 @@
 # Práctica 9: Aplicación de procesamiento de notas de texto
 
+[![Coveralls](https://github.com/ULL-ESIT-INF-DSI-2122/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-amarleo/actions/workflows/coveralls.yml/badge.svg)](https://github.com/ULL-ESIT-INF-DSI-2122/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-amarleo/actions/workflows/coveralls.yml)
+
+[![Sonar-Cloud](https://github.com/ULL-ESIT-INF-DSI-2122/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-amarleo/actions/workflows/sonarcloud.yml/badge.svg)](https://github.com/ULL-ESIT-INF-DSI-2122/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-amarleo/actions/workflows/sonarcloud.yml)
+
+[![Tests](https://github.com/ULL-ESIT-INF-DSI-2122/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-amarleo/actions/workflows/nodejs.yml/badge.svg)](https://github.com/ULL-ESIT-INF-DSI-2122/ull-esit-inf-dsi-21-22-prct09-filesystem-notes-app-amarleo/actions/workflows/nodejs.yml)
+
 ## Indice
 
 - [Práctica 9: Aplicación de procesamiento de notas de texto](#práctica-9-aplicación-de-procesamiento-de-notas-de-texto)
