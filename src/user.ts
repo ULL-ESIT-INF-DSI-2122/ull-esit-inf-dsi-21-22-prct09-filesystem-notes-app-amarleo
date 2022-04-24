@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import * as fs from 'fs';
 import {Note} from './note';
 
@@ -16,15 +17,17 @@ export class User {
       const jsonPath: string = databasePath + '/' + element.title + '.json';
       if (!fs.existsSync('./database')) {
         fs.mkdirSync('./database');
-        console.log('\nDatabase directory created');
+        console.log(chalk.green.inverse('\nDatabase directory created'));
       }
       if (!fs.existsSync(databasePath)) {
         fs.mkdirSync(databasePath);
-        console.log(`\nDirectory created for user ${this._name}`);
+        console.log(chalk.green.inverse(
+            `\nDirectory created for user ${this._name}`));
       }
       if (fs.existsSync(jsonPath)) {
-        console.log(`\nError: ${element.title} already exists` +
-        ` for user ${this._name}`);
+        console.log(chalk.red(chalk.red.inverse(
+            `\nError: ${element.title} already exists` +
+        ` for user ${this._name}`)));
       } else {
         const noteContent: string =
         `{\n\t"title": "${element.title}",` +
@@ -33,8 +36,9 @@ export class User {
         `\n}`;
         this._notes.push(element);
         fs.writeFileSync(jsonPath, noteContent);
-        console.log(`\n${element.title} note has been added` +
-        ` to user ${this._name}`);
+        console.log(chalk.green.inverse(
+            `\n${element.title} note has been added` +
+        ` to user ${this._name}`));
       }
     });
   }
@@ -60,15 +64,16 @@ export class User {
     const jsonPath: string = databasePath + '/' + note.title + '.json';
     if (!fs.existsSync('./database')) {
       fs.mkdirSync('./database');
-      console.log('\nDatabase directory created');
+      console.log(chalk.green.inverse('\nDatabase directory created'));
     }
     if (!fs.existsSync(databasePath)) {
       fs.mkdirSync(databasePath);
-      console.log(`\nDirectory created for user ${this._name}`);
+      console.log(chalk.green.inverse(
+          `\nDirectory created for user ${this._name}`));
     }
     if (fs.existsSync(jsonPath)) {
-      console.log(`\nError: ${note.title} already exists` +
-        ` for user ${this._name}`);
+      console.log(chalk.red.inverse(`\nError: ${note.title} already exists` +
+        ` for user ${this._name}`));
     } else {
       const noteContent: string =
       `{\n\t"title": "${note.title}",` +
@@ -77,8 +82,8 @@ export class User {
       `\n}`;
       fs.writeFileSync(jsonPath, noteContent);
       this._notes.push(note);
-      console.log(`\n${note.title} note has been added` +
-        ` to user ${this._name}`);
+      console.log(chalk.green.inverse(`\n${note.title} note has been added` +
+        ` to user ${this._name}`));
     }
   }
 
@@ -93,11 +98,11 @@ export class User {
       `\n}`;
       fs.writeFileSync(jsonPath, noteContent);
       this._notes.push(note);
-      console.log(`\n${note.title} note has been updated` +
-        ` to user ${this._name}`);
+      console.log(chalk.green.inverse(`\n${note.title} note has been updated` +
+        ` to user ${this._name}`));
     } else {
-      console.log(`Error: ${note.title} ` +
-        `does not exists on ${this._name} database`);
+      console.log(chalk.red.inverse(`Error: ${note.title} ` +
+        `does not exists on ${this._name} database`));
     }
   }
 
@@ -107,11 +112,11 @@ export class User {
     if (fs.existsSync(jsonPath)) {
       fs.unlink(jsonPath, (err) => {
         if (err) throw err;
-        console.log(`\n${jsonPath} was deleted`);
+        console.log(chalk.green.inverse(`\n${jsonPath} was deleted`));
       });
     } else {
-      console.log(`Error: ${note.title} ` +
-        `does not exists on ${this._name} database`);
+      console.log(chalk.red.inverse(`Error: ${note.title} ` +
+        `does not exists on ${this._name} database`));
     }
   }
 
@@ -119,7 +124,24 @@ export class User {
     console.log(`\n --- ${this._name} notes ---\n`);
     const databasePath: string = './database/' + this._name;
     fs.readdirSync(databasePath).forEach((file: string) => {
-      console.log(file.replace('.json', ''));
+      const note = new Note(file);
+      const jsonPath: string = './database/' + this._name +
+      '/' + note.title;
+      let data: string = fs.readFileSync(jsonPath,
+          {encoding: 'utf8', flag: 'r'});
+      let dataObject = JSON.parse(data);
+      if (dataObject.color === 'Blue') {
+        console.log(chalk.blue(file.replace('.json', '')));
+      }
+      if (dataObject.color === 'Red') {
+        console.log(chalk.red(file.replace('.json', '')));
+      }
+      if (dataObject.color === 'Yellow') {
+        console.log(chalk.yellow(file.replace('.json', '')));
+      }
+      if (dataObject.color === 'Green') {
+        console.log(chalk.green(file.replace('.json', '')));
+      }
     });
   }
 
@@ -132,8 +154,8 @@ export class User {
       let dataObject = JSON.parse(data);
       console.log(dataObject.body);
     } else {
-      console.log(`Error: ${note.title} ` +
-        `does not exists on ${this._name} database`);
+      console.log(chalk.red.inverse(`Error: ${note.title} ` +
+        `does not exists on ${this._name} database`));
     }
   }
 }
