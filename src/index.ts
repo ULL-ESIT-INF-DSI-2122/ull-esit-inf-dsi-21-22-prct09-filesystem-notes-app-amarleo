@@ -39,4 +39,23 @@ yargs.command({
     }
   },
 });
+
+yargs.command({
+  command: 'list',
+  describe: 'List all user notes',
+  builder: {
+    user: {
+      describe: 'User Name',
+      demandOption: true,
+      type: 'string',
+    },
+  },
+  handler(argv) {
+    if (typeof argv.user === 'string') {
+      const user = new User(argv.user);
+      user.listAllNotes();
+    }
+  },
+});
+
 yargs.parse();
